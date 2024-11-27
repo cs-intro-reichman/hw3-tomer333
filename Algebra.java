@@ -77,9 +77,9 @@ public class Algebra {
 	public static int div(int x1, int x2) {
 		int negative = 1;
 		if (x2 == 0) {return 0;}
-		else if ((x1<0 && x2>0) || (x1>0 && x2<0)){negative=-1;}
-		x1 = Math.abs(x1);
-		x2 = Math.abs(x2);
+		else if ((x1<0 && x2>0)){x1 = times(x1, -1);negative=-1;}
+		else if ((x1>0 && x2<0)){x2 = times(x2, -1);negative=-1;}
+		else if ((x1<0 && x2<0)){x1 = times(x1, -1);x2 = times(x2, -1);}
 		int count = 0;
 		while (x1 >= x2) {
 			x1 = minus(x1, x2);
