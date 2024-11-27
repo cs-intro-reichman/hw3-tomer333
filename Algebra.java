@@ -5,7 +5,6 @@
 
 public class Algebra {
 	public static void main(String args[]) {
-	    // Tests some of the operations
 	    System.out.println(plus(2,3));   // 2 + 3
 	    System.out.println(minus(7,2));  // 7 - 2
    		System.out.println(minus(2,7));  // 2 - 7
@@ -25,43 +24,86 @@ public class Algebra {
 
 	// Returns x1 + x2
 	public static int plus(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		while (x2>0) {
+			x1++;
+			x2--;
+		}
+		while (x2<0) {
+			x1--;
+			x2++;
+		}
+		return x1;
 	}
 
 	// Returns x1 - x2
 	public static int minus(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		while (x2>0) {
+			x1--;
+			x2--;
+		}
+		while (x2<0) {
+			x1++;
+			x2++;
+		}
+		return x1;
 	}
 
 	// Returns x1 * x2
 	public static int times(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		int plusResult = 0;
+		while (x2>0) {
+			plusResult = plus(plusResult, x1);
+			x2--;
+		}
+		while (x2<0) {
+			plusResult = minus(plusResult, x1);
+			x2++;
+		}
+		return plusResult;
 	}
 
 	// Returns x^n (for n >= 0)
 	public static int pow(int x, int n) {
-		// Replace the following statement with your code
-		return 0;
+		int timesResult = x;
+		if (n == 0) {return 1;}
+		else while (n>1) {
+			timesResult = times(timesResult, x);
+			n--;
+		}
+		return timesResult;
 	}
 
 	// Returns the integer part of x1 / x2 
 	public static int div(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		int negative = 1;
+		if (x2 == 0) {return 0;}
+		else if ((x1<0 && x2>0)){x1 = times(x1, -1);negative=-1;}
+		else if ((x1>0 && x2<0)){x2 = times(x2, -1);negative=-1;}
+		else if ((x1<0 && x2<0)){x1 = times(x1, -1);x2 = times(x2, -1);}
+		int count = 0;
+		while (x1 >= x2) {
+			x1 = minus(x1, x2);
+			count++;
+		}
+		return times(count, negative);
 	}
 
 	// Returns x1 % x2
 	public static int mod(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		if (x2 == 0) {return 0;}
+		while (x1>=x2) {
+			x1 = minus(x1, x2);
+		}
+		return x1;
 	}	
 
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
-		// Replace the following statement with your code
-		return 0;
+		if (x < 0) {return 0;}
+		int mySqrt = 0;
+		while (times(mySqrt, mySqrt) <= x) {
+			mySqrt++;
+		}
+		return minus(mySqrt, 1);
 	}	  	  
 }
